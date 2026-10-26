@@ -13,7 +13,7 @@ const CONFIG = {
   recipientName: "Hạnh",
 
   // Tên hoặc biệt danh người gửi
-  senderName: "Đứa bạn thân của cậu ♡",
+  senderName: "Đứa bạn của cậu ♡",
 
   // Ngày sinh nhật hoặc dịp đặc biệt
   birthdayDate: "Hôm nay là ngày đặc biệt của cậu!",
@@ -28,7 +28,7 @@ const CONFIG = {
     "Nhiệm vụ tuổi mới: Ăn ngon, ngủ ngoan, vui hết nấc và nhớ luôn rủ tớ đi chơi nhé! 🍰🧋",
     "Thông báo từ vũ trụ: Cậu là một người bạn vô cùng đáng trân quý. Đừng bao giờ quên điều đó nha! 💖",
     "Chúc cậu luôn có đủ dũng khí để theo đuổi ước mơ và đủ may mắn để mọi điều suôn sẻ! 🌟",
-    "Tuổi mới ví tiền dày cộm, công việc thuận lợi, người thương cậu thật lòng và tớ mãi là bạn thân cậu! 🎁🍀",
+    "Tuổi mới ví tiền dày cộm, công việc thuận lợi, người thương cậu thật lòng và tớ mãi là bạn cậu! 🎁🍀",
     "Mỗi ngày trôi qua đều là một ngày tuyệt đẹp và tràn ngập những bất ngờ ngọt ngào! 🌸🌻",
   ],
 
@@ -211,7 +211,10 @@ class SoundEffects {
     const gain = this.ctx.createGain();
     osc.type = "sine";
     osc.frequency.setValueAtTime(180, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.35);
+    osc.frequency.exponentialRampToValueAtTime(
+      900,
+      this.ctx.currentTime + 0.35,
+    );
 
     gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.14, this.ctx.currentTime + 0.2);
@@ -258,7 +261,10 @@ class SoundEffects {
 
       const noiseGain = this.ctx.createGain();
       noiseGain.gain.setValueAtTime(0.18, this.ctx.currentTime);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.28);
+      noiseGain.gain.exponentialRampToValueAtTime(
+        0.001,
+        this.ctx.currentTime + 0.28,
+      );
 
       noise.connect(filter);
       filter.connect(noiseGain);
@@ -470,13 +476,16 @@ function initCakeCandleInteraction() {
         }, 2100);
       }
       // Luồng gió xuất hiện trước, rồi mới làm tắt ngọn nến.
-      setTimeout(() => {
-        candleFlame.classList.add("is-blown");
-        if (smokePuff) {
-          smokePuff.classList.remove("hidden");
-          setTimeout(() => smokePuff.classList.add("hidden"), 2000);
-        }
-      }, blowingGirlStage ? 850 : 0);
+      setTimeout(
+        () => {
+          candleFlame.classList.add("is-blown");
+          if (smokePuff) {
+            smokePuff.classList.remove("hidden");
+            setTimeout(() => smokePuff.classList.add("hidden"), 2000);
+          }
+        },
+        blowingGirlStage ? 850 : 0,
+      );
 
       // Phát âm thanh thổi & hoan hô
       sfx.playBlow();
@@ -489,7 +498,8 @@ function initCakeCandleInteraction() {
 
       // Cập nhật giao diện
       if (cakeStatusText) {
-        cakeStatusText.textContent = "Ước nguyện thành công! Bấm để thắp lại 🕯️";
+        cakeStatusText.textContent =
+          "Ước nguyện thành công! Bấm để thắp lại 🕯️";
       }
       if (candleStatusIcon) candleStatusIcon.textContent = "✨";
       if (blowCandleHeroBtn) {
@@ -593,14 +603,38 @@ function spawnFlyingBalloons(count = 25) {
   if (!layer) return;
 
   const palettes = [
-    { bg: "radial-gradient(circle at 35% 35%, #ffaec9, #ff75a8)", c: "#ff75a8" },
-    { bg: "radial-gradient(circle at 35% 35%, #fff0a8, #ffd166)", c: "#ffd166" },
-    { bg: "radial-gradient(circle at 35% 35%, #d8ccff, #8d78d8)", c: "#8d78d8" },
-    { bg: "radial-gradient(circle at 35% 35%, #bbf2de, #5ac7a0)", c: "#5ac7a0" },
-    { bg: "radial-gradient(circle at 35% 35%, #ffd0b8, #ff9e79)", c: "#ff9e79" },
-    { bg: "radial-gradient(circle at 35% 35%, #c5e3ff, #74c0fc)", c: "#74c0fc" },
-    { bg: "radial-gradient(circle at 35% 35%, #ffc2d1, #ff5376)", c: "#ff5376" },
-    { bg: "radial-gradient(circle at 35% 35%, #fff6d6, #ffe066)", c: "#ffe066" },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #ffaec9, #ff75a8)",
+      c: "#ff75a8",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #fff0a8, #ffd166)",
+      c: "#ffd166",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #d8ccff, #8d78d8)",
+      c: "#8d78d8",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #bbf2de, #5ac7a0)",
+      c: "#5ac7a0",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #ffd0b8, #ff9e79)",
+      c: "#ff9e79",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #c5e3ff, #74c0fc)",
+      c: "#74c0fc",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #ffc2d1, #ff5376)",
+      c: "#ff5376",
+    },
+    {
+      bg: "radial-gradient(circle at 35% 35%, #fff6d6, #ffe066)",
+      c: "#ffe066",
+    },
   ];
 
   for (let i = 0; i < count; i++) {
@@ -820,8 +854,7 @@ function updateLightboxContent(index) {
   }
   if (caption) caption.textContent = item.caption || "";
   if (date) date.textContent = item.date || "";
-  if (counter)
-    counter.textContent = `${index + 1} / ${CONFIG.memories.length}`;
+  if (counter) counter.textContent = `${index + 1} / ${CONFIG.memories.length}`;
 }
 
 // ============================================================================
@@ -951,29 +984,32 @@ function launchGrandFireworks(rounds = 18) {
   }
 
   // Đợt nổ bùng nổ đồng loạt cuối cùng (Grand Finale Salvo)
-  setTimeout(() => {
-    const salvoPositions = [0.2, 0.4, 0.6, 0.8];
-    salvoPositions.forEach((posRatio) => {
-      const startX = fireworksWidth * posRatio;
-      const targetX = startX + (Math.random() - 0.5) * 60;
-      const targetY = fireworksHeight * (0.12 + Math.random() * 0.25);
+  setTimeout(
+    () => {
+      const salvoPositions = [0.2, 0.4, 0.6, 0.8];
+      salvoPositions.forEach((posRatio) => {
+        const startX = fireworksWidth * posRatio;
+        const targetX = startX + (Math.random() - 0.5) * 60;
+        const targetY = fireworksHeight * (0.12 + Math.random() * 0.25);
 
-      sfx.playFireworkLaunch();
+        sfx.playFireworkLaunch();
 
-      fireworksRockets.push({
-        x: startX,
-        y: fireworksHeight,
-        targetX,
-        targetY,
-        speed: 11 + Math.random() * 3,
-        style: "peony",
+        fireworksRockets.push({
+          x: startX,
+          y: fireworksHeight,
+          targetX,
+          targetY,
+          speed: 11 + Math.random() * 3,
+          style: "peony",
+        });
       });
-    });
 
-    if (!fireworksAnimId) {
-      fireworksAnimId = requestAnimationFrame(updateFireworksLoop);
-    }
-  }, rounds * 220 + 300);
+      if (!fireworksAnimId) {
+        fireworksAnimId = requestAnimationFrame(updateFireworksLoop);
+      }
+    },
+    rounds * 220 + 300,
+  );
 }
 
 // Tạo chùm hạt nổ đa tầng với các kiểu dáng nghệ thuật
@@ -996,7 +1032,12 @@ function createBurst(x, y, style = "peony") {
     for (let i = 0; i < heartParticles; i++) {
       const t = (Math.PI * 2 * i) / heartParticles;
       const hx = 16 * Math.pow(Math.sin(t), 3);
-      const hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      const hy = -(
+        13 * Math.cos(t) -
+        5 * Math.cos(2 * t) -
+        2 * Math.cos(3 * t) -
+        Math.cos(4 * t)
+      );
       const speed = 0.22 + Math.random() * 0.08;
 
       fireworksParticles.push({
@@ -1131,7 +1172,13 @@ function updateFireworksLoop() {
 
       // Vệt khói lấp lánh phía sau
       fireworksCtx.beginPath();
-      fireworksCtx.arc(r.x - (dx / dist) * 8, r.y - (dy / dist) * 8, 2, 0, Math.PI * 2);
+      fireworksCtx.arc(
+        r.x - (dx / dist) * 8,
+        r.y - (dy / dist) * 8,
+        2,
+        0,
+        Math.PI * 2,
+      );
       fireworksCtx.fillStyle = "rgba(255, 209, 102, 0.6)";
       fireworksCtx.fill();
     }
@@ -1165,7 +1212,11 @@ function updateFireworksLoop() {
   fireworksCtx.globalAlpha = 1;
   fireworksCtx.shadowBlur = 0;
 
-  if (fireworksRockets.length > 0 || fireworksParticles.length > 0 || screenFlashAlpha > 0.005) {
+  if (
+    fireworksRockets.length > 0 ||
+    fireworksParticles.length > 0 ||
+    screenFlashAlpha > 0.005
+  ) {
     fireworksAnimId = requestAnimationFrame(updateFireworksLoop);
   } else {
     fireworksCtx.clearRect(0, 0, fireworksWidth, fireworksHeight);
@@ -1338,5 +1389,3 @@ function initCelebrationButtons() {
     });
   }
 }
-
-
