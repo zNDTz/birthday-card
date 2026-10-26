@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sunsetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cdb4db"/>
+      <stop offset="40%" stop-color="#ffc8dd"/>
+      <stop offset="70%" stop-color="#ffafcc"/>
+      <stop offset="100%" stop-color="#ffe5d9"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff176"/>
+      <stop offset="100%" stop-color="#ffb703"/>
+    </linearGradient>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="700" fill="url(#sunsetGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="300" cy="340" r="100" fill="url(#sunGrad)" opacity="0.9" filter="url(#glow2)"/>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.75">
+    <!-- Cloud Left -->
+    <path d="M70 260 C70 230 110 230 130 250 C150 230 190 240 190 260 C210 260 210 290 190 300 L70 300 C50 290 50 260 70 260 Z"/>
+    <!-- Cloud Right -->
+    <path d="M410 210 C410 180 450 180 470 200 C490 180 530 190 530 210 C550 210 550 240 530 250 L410 250 C390 240 390 210 410 210 Z"/>
+  </g>
+
+  <!-- Stars / Twinkles in upper sky -->
+  <path d="M120 100 Q120 115 105 115 Q120 115 120 130 Q120 115 135 115 Q120 115 120 100 Z" fill="#fff"/>
+  <path d="M480 80 Q480 95 465 95 Q480 95 480 110 Q480 95 495 95 Q480 95 480 80 Z" fill="#ffd166"/>
+  <path d="M280 90 Q280 102 268 102 Q280 102 280 114 Q280 102 292 102 Q280 102 280 90 Z" fill="#fff"/>
+
+  <!-- Gentle hills -->
+  <path d="M-20 490 Q150 430 320 460 Q480 490 620 440 L620 720 L-20 720 Z" fill="#a2d2ff" opacity="0.6"/>
+  <path d="M-20 520 Q120 470 270 500 Q440 530 620 480 L620 720 L-20 720 Z" fill="#bde0fe"/>
+  <path d="M-20 570 Q160 520 330 550 Q480 570 620 530 L620 720 L-20 720 Z" fill="#ffc6ff" opacity="0.7"/>
+
+  <!-- Picnic Mat -->
+  <polygon points="170,550 430,550 480,620 120,620" fill="#fff" stroke="#ffb3c6" stroke-width="3"/>
+  <line x1="200" y1="550" x2="160" y2="620" stroke="#ffccd5" stroke-width="2"/>
+  <line x1="250" y1="550" x2="220" y2="620" stroke="#ffccd5" stroke-width="2"/>
+  <line x1="300" y1="550" x2="280" y2="620" stroke="#ffccd5" stroke-width="2"/>
+  <line x1="350" y1="550" x2="340" y2="620" stroke="#ffccd5" stroke-width="2"/>
+  <line x1="400" y1="550" x2="400" y2="620" stroke="#ffccd5" stroke-width="2"/>
+
+  <!-- Picnic Basket & Flowers -->
+  <rect x="260" y="525" width="65" height="45" rx="8" fill="#d4a373" stroke="#bc6c25" stroke-width="3"/>
+  <path d="M260 545 L325 545" stroke="#bc6c25" stroke-width="2"/>
+  <path d="M275 525 C275 505 310 505 310 525" fill="none" stroke="#bc6c25" stroke-width="3"/>
+
+  <!-- Little flowers on the grass -->
+  <g transform="translate(140, 580)">
+    <circle cx="0" cy="0" r="5" fill="#ffd166"/>
+    <circle cx="-5" cy="-5" r="4" fill="#fff"/>
+    <circle cx="5" cy="-5" r="4" fill="#fff"/>
+    <circle cx="-5" cy="5" r="4" fill="#fff"/>
+    <circle cx="5" cy="5" r="4" fill="#fff"/>
+  </g>
+  <g transform="translate(440, 590)">
+    <circle cx="0" cy="0" r="5" fill="#ff758f"/>
+    <circle cx="-5" cy="-5" r="4" fill="#fff"/>
+    <circle cx="5" cy="-5" r="4" fill="#fff"/>
+    <circle cx="-5" cy="5" r="4" fill="#fff"/>
+    <circle cx="5" cy="5" r="4" fill="#fff"/>
+  </g>
+
+  <!-- Cute Hot Air Balloon in sky -->
+  <g transform="translate(390, 130) scale(0.75)">
+    <path d="M40 0 C10 0 0 30 15 65 L30 90 L50 90 L65 65 C80 30 70 0 40 0 Z" fill="#ff8fab" stroke="#fff" stroke-width="3"/>
+    <path d="M25 15 C35 30 35 60 30 90" stroke="#fff" stroke-width="2" fill="none"/>
+    <path d="M55 15 C45 30 45 60 50 90" stroke="#fff" stroke-width="2" fill="none"/>
+    <line x1="32" y1="90" x2="32" y2="105" stroke="#9381ff" stroke-width="2"/>
+    <line x1="48" y1="90" x2="48" y2="105" stroke="#9381ff" stroke-width="2"/>
+    <rect x="28" y="105" width="24" height="16" rx="3" fill="#cdb4db" stroke="#fff" stroke-width="2"/>
+  </g>
+
+  <!-- Banner / Text -->
+  <g transform="translate(300, 650)">
+    <rect x="-140" y="-24" width="280" height="48" rx="24" fill="#ffffff" stroke="#bde0fe" stroke-width="2"/>
+    <text x="0" y="7" font-family="'Nunito', sans-serif" font-weight="900" font-size="20" fill="#755bb2" text-anchor="middle">Đi khắp nơi cùng nhau 🌷</text>
+  </g>
+</svg>

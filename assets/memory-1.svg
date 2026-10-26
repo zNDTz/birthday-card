@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd5e5"/>
+      <stop offset="50%" stop-color="#ffecf2"/>
+      <stop offset="100%" stop-color="#fff8fa"/>
+    </linearGradient>
+    <linearGradient id="teaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8fab"/>
+      <stop offset="100%" stop-color="#fb6f92"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="700" fill="url(#skyGrad)"/>
+  
+  <!-- Decorative background circles -->
+  <circle cx="120" cy="140" r="80" fill="#fff" opacity="0.6"/>
+  <circle cx="500" cy="180" r="110" fill="#ffe5ec" opacity="0.8"/>
+  <circle cx="480" cy="520" r="90" fill="#fff" opacity="0.5"/>
+
+  <!-- Sparkles & stars -->
+  <path d="M150 90 Q150 110 130 110 Q150 110 150 130 Q150 110 170 110 Q150 110 150 90 Z" fill="#ffb3c6"/>
+  <path d="M460 100 Q460 120 440 120 Q460 120 460 140 Q460 120 480 120 Q460 120 460 100 Z" fill="#ffd166"/>
+  <path d="M520 320 Q520 335 505 335 Q520 335 520 350 Q520 335 535 335 Q520 335 520 320 Z" fill="#ff8fab"/>
+  <circle cx="100" cy="280" r="5" fill="#ffb703"/>
+  <circle cx="490" cy="240" r="6" fill="#ff8fab"/>
+  <circle cx="160" cy="460" r="7" fill="#b388eb"/>
+
+  <!-- Cafe Table -->
+  <ellipse cx="300" cy="560" rx="240" ry="60" fill="#f8e1eb" stroke="#f2c4d7" stroke-width="4"/>
+  <ellipse cx="300" cy="552" rx="220" ry="48" fill="#fff" opacity="0.8"/>
+
+  <!-- Bestie Cup 1 (Boba Tea Pink) -->
+  <g transform="translate(190, 310)">
+    <!-- Shadow -->
+    <ellipse cx="45" cy="210" rx="42" ry="12" fill="#e8bbcf" opacity="0.5"/>
+    <!-- Cup body -->
+    <path d="M15 40 L28 190 Q45 204 62 190 L75 40 Z" fill="#fff" stroke="#ffb3c6" stroke-width="4"/>
+    <!-- Tea liquid -->
+    <path d="M20 70 L28 186 Q45 198 62 186 L70 70 Z" fill="url(#teaGrad)" opacity="0.85"/>
+    <!-- Boba pearls -->
+    <circle cx="36" cy="170" r="7" fill="#590d22"/>
+    <circle cx="52" cy="174" r="7" fill="#590d22"/>
+    <circle cx="42" cy="155" r="7" fill="#590d22"/>
+    <circle cx="56" cy="158" r="6.5" fill="#590d22"/>
+    <circle cx="35" cy="140" r="6" fill="#590d22"/>
+    <!-- Lid & straw -->
+    <ellipse cx="45" cy="40" rx="35" ry="12" fill="#fff" stroke="#ffb3c6" stroke-width="4"/>
+    <rect x="40" y="-20" width="10" height="70" rx="5" fill="#b388eb" transform="rotate(-8 45 40)"/>
+    <!-- Cute smile on cup -->
+    <circle cx="37" cy="110" r="3" fill="#590d22"/>
+    <circle cx="53" cy="110" r="3" fill="#590d22"/>
+    <path d="M42 118 Q45 124 48 118" stroke="#590d22" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="33" cy="116" rx="4" ry="2.5" fill="#ff4d6d" opacity="0.5"/>
+    <ellipse cx="57" cy="116" rx="4" ry="2.5" fill="#ff4d6d" opacity="0.5"/>
+  </g>
+
+  <!-- Bestie Cup 2 (Matcha / Mint Blue) -->
+  <g transform="translate(320, 310)">
+    <!-- Shadow -->
+    <ellipse cx="45" cy="210" rx="42" ry="12" fill="#e8bbcf" opacity="0.5"/>
+    <!-- Cup body -->
+    <path d="M15 40 L28 190 Q45 204 62 190 L75 40 Z" fill="#fff" stroke="#a7c957" stroke-width="4"/>
+    <!-- Tea liquid -->
+    <path d="M20 70 L28 186 Q45 198 62 186 L70 70 Z" fill="#90be6d" opacity="0.85"/>
+    <!-- Boba pearls -->
+    <circle cx="36" cy="170" r="7" fill="#2d6a4f"/>
+    <circle cx="52" cy="174" r="7" fill="#2d6a4f"/>
+    <circle cx="43" cy="155" r="7" fill="#2d6a4f"/>
+    <circle cx="58" cy="158" r="6.5" fill="#2d6a4f"/>
+    <!-- Lid & straw -->
+    <ellipse cx="45" cy="40" rx="35" ry="12" fill="#fff" stroke="#a7c957" stroke-width="4"/>
+    <rect x="40" y="-20" width="10" height="70" rx="5" fill="#ffd166" transform="rotate(8 45 40)"/>
+    <!-- Cute face on cup -->
+    <circle cx="37" cy="110" r="3" fill="#1b4332"/>
+    <circle cx="53" cy="110" r="3" fill="#1b4332"/>
+    <path d="M42 118 Q45 124 48 118" stroke="#1b4332" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="33" cy="116" rx="4" ry="2.5" fill="#ff758f" opacity="0.6"/>
+    <ellipse cx="57" cy="116" rx="4" ry="2.5" fill="#ff758f" opacity="0.6"/>
+  </g>
+
+  <!-- Big Heart Connecting Both -->
+  <g transform="translate(300, 260) scale(0.9)">
+    <path d="M0 0 C -20 -30, -50 -10, -35 25 C -20 60, 0 80, 0 90 C 0 80, 20 60, 35 25 C 50 -10, 20 -30, 0 0 Z" fill="#ff4d6d" filter="url(#softGlow)" opacity="0.9"/>
+  </g>
+
+  <!-- Floating mini hearts -->
+  <path d="M230 230 C 220 215, 205 225, 212 242 C 220 260, 230 270, 230 275 C 230 270, 240 260, 248 242 C 255 225, 240 215, 230 230 Z" fill="#ff758f" opacity="0.75" transform="rotate(-15 230 230) scale(0.7)"/>
+  <path d="M370 230 C 360 215, 345 225, 352 242 C 360 260, 370 270, 370 275 C 370 270, 380 260, 388 242 C 395 225, 380 215, 370 230 Z" fill="#b388eb" opacity="0.8" transform="rotate(15 370 230) scale(0.7)"/>
+
+  <!-- Banner / Text -->
+  <g transform="translate(300, 630)">
+    <rect x="-140" y="-24" width="280" height="48" rx="24" fill="#ffffff" stroke="#ffb3c6" stroke-width="2"/>
+    <text x="0" y="7" font-family="'Nunito', sans-serif" font-weight="900" font-size="20" fill="#a45d85" text-anchor="middle">Trà sữa & những cuộc trò chuyện 🧋</text>
+  </g>
+</svg>

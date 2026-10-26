@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#fff0f6" />
+    <meta
+      name="description"
+      content="Một tấm thiệp sinh nhật tương tác diệu kỳ, ngọt ngào dành tặng người bạn thân yêu nhất."
+    />
+    <title>Happy Birthday! 🎂✨</title>
+
+    <!-- Google Fonts: Nunito, Pacifico, Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Ambient floating lights & stars in the background -->
+    <div class="ambient-layer" aria-hidden="true">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="ambient ambient-three"></div>
+      <div class="ambient-stars">
+        <span class="star s-1">✦</span>
+        <span class="star s-2">✧</span>
+        <span class="star s-3">★</span>
+        <span class="star s-4">✦</span>
+        <span class="star s-5">♡</span>
+        <span class="star s-6">✧</span>
+        <span class="star s-7">★</span>
+        <span class="star s-8">♡</span>
+      </div>
+    </div>
+
+    <!-- Interactive Fireworks Canvas -->
+    <canvas
+      id="fireworksCanvas"
+      class="fireworks-canvas"
+      aria-hidden="true"
+    ></canvas>
+
+    <!-- Floating Audio Player Bar -->
+    <aside
+      class="floating-music-bar"
+      id="musicPlayerBar"
+      aria-label="Trình phát nhạc nền"
+    >
+      <button
+        class="music-pill-btn"
+        id="musicToggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Bật hoặc tắt nhạc nền sinh nhật"
+      >
+        <span class="vinyl-disc" id="vinylDisc" aria-hidden="true">
+          <span class="vinyl-groove"></span>
+        </span>
+        <span class="sound-wave" id="soundWave" aria-hidden="true">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+          <span class="bar bar-4"></span>
+        </span>
+        <span class="music-text" id="musicLabel">Bật nhạc sinh nhật ♫</span>
+      </button>
+    </aside>
+
+    <!-- Main Application Wrapper -->
+    <main class="app-container">
+      <!-- ========================================== -->
+      <!-- SCENE 1: THE MAGIC 3D ENVELOPE (OPENING)   -->
+      <!-- ========================================== -->
+      <section
+        class="envelope-scene"
+        id="envelopeScreen"
+        aria-labelledby="introTitle"
+      >
+        <div class="envelope-hero-text">
+          <span class="eyebrow-badge">✨ A SPECIAL SURPRISE FOR YOU ✨</span>
+          <h1 id="introTitle">
+            Có một lá thư đặc biệt<br />dành riêng cho
+            <span class="highlight-name" id="introRecipientName">Hạnh</span>! 💌
+          </h1>
+          <p class="intro-subtitle">
+            Chạm vào phong bì để bóc tem thư và khám phá món quà bí mật nhé.
+          </p>
+        </div>
+
+        <!-- 3D Interactive Envelope -->
+        <div class="envelope-stage">
+          <button
+            class="envelope-box"
+            id="openEnvelope"
+            type="button"
+            aria-label="Bấm vào đây để mở phong bì thư sinh nhật"
+          >
+            <!-- Back of envelope -->
+            <div class="envelope-back"></div>
+
+            <!-- The letter peeking inside -->
+            <div class="letter-slip" id="letterSlip" aria-hidden="true">
+              <div class="slip-header">
+                <span class="slip-stamp">🎂</span>
+                <span class="slip-postmark">AIR MAIL</span>
+              </div>
+              <div class="slip-body">
+                <p class="slip-title">Happy Birthday!</p>
+                <p class="slip-recipient">
+                  To: <span id="slipName">Bạn của tớ</span>
+                </p>
+                <div class="slip-lines"><span></span><span></span></div>
+              </div>
+              <div class="slip-footer">♡ Made with all my best wishes ♡</div>
+            </div>
+
+            <!-- Envelope Pocket Front -->
+            <div class="envelope-front">
+              <!-- Vintage Postage Stamp -->
+              <div class="postage-stamp" aria-hidden="true">
+                <div class="stamp-inner">
+                  <span>🌸</span>
+                  <small>FOREVER</small>
+                </div>
+                <div class="postmark-circle">SN<br />2026</div>
+              </div>
+            </div>
+
+            <!-- Top Fold / Flap -->
+            <div class="envelope-flap" id="envelopeFlap"></div>
+
+            <!-- Golden/Rose Wax Seal -->
+            <div class="wax-seal" id="waxSeal" aria-hidden="true">
+              <div class="seal-inner">
+                <span class="seal-heart">♥</span>
+              </div>
+              <div class="seal-sparkle seal-sp-1">✨</div>
+              <div class="seal-sparkle seal-sp-2">✧</div>
+            </div>
+          </button>
+
+          <p class="tap-guide" id="tapGuide" aria-hidden="true">
+            <span class="finger-icon">👉</span> Chạm vào con dấu sáp để mở thư
+            <span class="finger-icon">👈</span>
+          </p>
+        </div>
+
+        <div class="envelope-bottom-note">
+          <p>Gói ghém yêu thương và những điều ngọt ngào nhất 🍰🌷</p>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SCENE 2: THE MAIN CELEBRATION CARD          -->
+      <!-- ========================================== -->
+      <div class="card-scene hidden" id="cardScreen" aria-live="polite">
+        <!-- Navigation & Quick Progress Bar -->
+        <nav class="scene-nav" aria-label="Điều hướng nhanh trang thiệp">
+          <a
+            href="#heroSection"
+            class="nav-chip active"
+            data-target="heroSection"
+            >🎂 Bánh kem</a
+          >
+          <a href="#wishSection" class="nav-chip" data-target="wishSection"
+            >💌 Lời chúc</a
+          >
+          <a href="#memorySection" class="nav-chip" data-target="memorySection"
+            >📸 Kỷ niệm</a
+          >
+          <a href="#finaleSection" class="nav-chip" data-target="finaleSection"
+            >🎁 Ước nguyện</a
+          >
+        </nav>
+
+        <!-- 2.1 Hero Section: Birthday Stage, Cake, Balloons -->
+        <section
+          class="celebration-hero"
+          id="heroSection"
+          aria-labelledby="heroTitle"
+        >
+          <!-- Floating Interactive Balloons Cluster -->
+          <div
+            class="balloons-stage"
+            id="balloonsStage"
+            aria-label="Chùm bóng bay sinh nhật tương tác. Bấm vào bóng để làm nổ."
+          >
+            <!-- Balloons will be interactive and can be popped -->
+            <div
+              class="balloon balloon-pink"
+              role="button"
+              tabindex="0"
+              aria-label="Bong bóng hồng, bấm để nổ"
+            >
+              <span class="string"></span>
+            </div>
+            <div
+              class="balloon balloon-yellow"
+              role="button"
+              tabindex="0"
+              aria-label="Bong bóng vàng, bấm để nổ"
+            >
+              <span class="string"></span>
+            </div>
+            <div
+              class="balloon balloon-purple"
+              role="button"
+              tabindex="0"
+              aria-label="Bong bóng tím, bấm để nổ"
+            >
+              <span class="string"></span>
+            </div>
+            <div
+              class="balloon balloon-mint"
+              role="button"
+              tabindex="0"
+              aria-label="Bong bóng xanh mint, bấm để nổ"
+            >
+              <span class="string"></span>
+            </div>
+          </div>
+
+          <div class="hero-content">
+            <div class="celebration-tag">
+              <span class="tag-sparkle">🎉</span>
+              <span class="tag-text">HÔM NAY LÀ NGÀY CỦA CẬU!</span>
+              <span class="tag-sparkle">🎈</span>
+            </div>
+
+            <h2 id="heroTitle" class="hero-headline">
+              Chúc Mừng Sinh Nhật,<br />
+              <span class="recipient-display" id="friendName">Hạnh!</span> ✨
+            </h2>
+
+            <p class="hero-subtext" id="heroSubtitle">
+              Tuổi mới chúc cậu luôn rạng rỡ như ánh mặt trời, lúc nào cũng cười
+              thật tươi và gặp vạn điều may mắn nhé!
+            </p>
+
+            <div class="hero-action-buttons">
+              <button
+                class="primary-act-btn"
+                id="blowCandleHeroBtn"
+                type="button"
+              >
+                🎂 Thổi nến ước nguyện
+              </button>
+              <button
+                class="secondary-act-btn"
+                id="spawnBalloonBtn"
+                type="button"
+              >
+                🎈 Thả thêm bóng bay
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Cake Showcase -->
+          <div class="cake-showcase" id="cakeContainer">
+            <div class="cake-halo" id="cakeHalo" aria-hidden="true"></div>
+
+            <!-- Phần ảnh đại diện người nhận được đẩy lên trên, tạo khoảng trống thanh thoát bên trên bánh kem -->
+            <div
+              class="cake-topper-frame floating-avatar-badge"
+              id="cakeTopper"
+              role="img"
+              aria-label="Ảnh đại diện của người nhận"
+            >
+              <span class="topper-crown" aria-hidden="true">👑</span>
+              <div class="avatar-ring">
+                <img
+                  id="cakeAvatar"
+                  alt="Ảnh đại diện của người nhận"
+                  class="topper-avatar"
+                />
+                <div id="cakeAvatarFallback" class="topper-fallback">
+                  <span>🌸</span>
+                  <small>Hạnh</small>
+                </div>
+              </div>
+              <div class="avatar-sparkle av-sp-1" aria-hidden="true">✨</div>
+              <div class="avatar-sparkle av-sp-2" aria-hidden="true">✧</div>
+              <div class="topper-stem" aria-hidden="true"></div>
+            </div>
+
+            <div
+              class="cake-box"
+              id="birthdayCake"
+              role="button"
+              tabindex="0"
+              aria-label="Bánh kem sinh nhật. Bấm vào nến hoặc bánh để thổi nến và ước nguyện."
+            >
+              <!-- Candle & Flame -->
+              <div class="candle-holder" id="candleHolder">
+                <div class="candle-stick"></div>
+                <div class="candle-wick"></div>
+                <div
+                  class="candle-flame"
+                  id="candleFlame"
+                  title="Ngọn lửa ước nguyện (Bấm để thổi tắt)"
+                >
+                  <span class="flame-core"></span>
+                </div>
+                <div
+                  class="smoke-puff hidden"
+                  id="smokePuff"
+                  aria-hidden="true"
+                >
+                  <span class="smoke-particle sm-1"></span>
+                  <span class="smoke-particle sm-2"></span>
+                  <span class="smoke-particle sm-3"></span>
+                </div>
+              </div>
+
+              <!-- Cake Tier 3 (Top Tier) -->
+              <div class="cake-tier tier-top">
+                <div class="icing-dripping top-drips"></div>
+                <div class="tier-surface">
+                  <span class="decor-berry b1">🍓</span>
+                  <span class="decor-berry b2">🫐</span>
+                  <span class="decor-berry b3">🍓</span>
+                </div>
+                <div class="tier-body">
+                  <span class="sprinkle sp1"></span>
+                  <span class="sprinkle sp2"></span>
+                  <span class="sprinkle sp3"></span>
+                </div>
+              </div>
+
+              <!-- Cake Tier 2 (Middle Tier) -->
+              <div class="cake-tier tier-mid">
+                <div class="icing-dripping mid-drips"></div>
+                <div class="tier-body">
+                  <span class="sprinkle sp4"></span>
+                  <span class="sprinkle sp5"></span>
+                  <span class="sprinkle sp6"></span>
+                  <span class="sprinkle sp7"></span>
+                </div>
+              </div>
+
+              <!-- Cake Tier 1 (Base Tier) -->
+              <div class="cake-tier tier-base">
+                <div class="icing-pearls"></div>
+                <div class="tier-body">
+                  <span class="sprinkle sp8"></span>
+                  <span class="sprinkle sp9"></span>
+                </div>
+              </div>
+
+              <!-- Ceramic Golden Plate -->
+              <div class="cake-plate-gold"></div>
+            </div>
+
+            <!-- Cute Blowing Girl Animation Character (Bé gái thổi tắt nến) -->
+            <div
+              class="blowing-girl-stage hidden"
+              id="blowingGirlStage"
+              aria-hidden="true"
+            >
+              <!-- Magic Wind Breeze Stream (Luồng gió ma thuật bay qua nến) -->
+              <div class="magic-wind-breeze" id="magicWindBreeze">
+                <svg
+                  class="wind-svg"
+                  viewBox="0 0 150 60"
+                  width="150"
+                  height="60"
+                  fill="none"
+                >
+                  <path
+                    class="wind-path p1"
+                    d="M140 30 C 105 18, 65 42, 10 26"
+                    stroke="rgba(255, 255, 255, 0.95)"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    class="wind-path p2"
+                    d="M135 38 C 98 30, 58 50, 18 36"
+                    stroke="rgba(187, 242, 222, 0.9)"
+                    stroke-width="2.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    class="wind-path p3"
+                    d="M130 22 C 90 14, 50 28, 6 18"
+                    stroke="rgba(255, 224, 138, 0.85)"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span class="wind-sparkle wsp-1">✨</span>
+                <span class="wind-sparkle wsp-2">🌸</span>
+                <span class="wind-sparkle wsp-3">♡</span>
+                <span class="wind-sparkle wsp-4">✧</span>
+              </div>
+
+              <!-- Chibi Girl Vector Character -->
+              <div class="chibi-girl-wrapper">
+                <svg
+                  class="chibi-girl-svg"
+                  viewBox="0 0 160 190"
+                  width="125"
+                  height="148"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!-- Hair Pigtails (Back) -->
+                  <circle cx="36" cy="78" r="24" fill="#6d4c41" />
+                  <circle cx="124" cy="78" r="24" fill="#6d4c41" />
+                  <ellipse
+                    cx="28"
+                    cy="95"
+                    rx="14"
+                    ry="22"
+                    fill="#5d4037"
+                    transform="rotate(-15 28 95)"
+                  />
+                  <ellipse
+                    cx="132"
+                    cy="95"
+                    rx="14"
+                    ry="22"
+                    fill="#5d4037"
+                    transform="rotate(15 132 95)"
+                  />
+
+                  <!-- Ribbon Bows -->
+                  <path
+                    d="M38 72 C30 60 22 75 32 80 C22 85 30 100 38 88 Z"
+                    fill="#ff75a8"
+                  />
+                  <circle cx="36" cy="80" r="5" fill="#ffd166" />
+                  <path
+                    d="M122 72 C130 60 138 75 128 80 C138 85 130 100 122 88 Z"
+                    fill="#ff75a8"
+                  />
+                  <circle cx="124" cy="80" r="5" fill="#ffd166" />
+
+                  <!-- Body & Dress -->
+                  <path
+                    d="M52 135 L40 180 C40 182 120 182 120 180 L108 135 Z"
+                    fill="#ffccd5"
+                  />
+                  <!-- White collar & apron -->
+                  <path d="M62 135 L80 152 L98 135 Z" fill="#ffffff" />
+                  <path
+                    d="M60 150 Q80 156 100 150 L96 178 Q80 182 64 178 Z"
+                    fill="#ffffff"
+                    opacity="0.9"
+                  />
+                  <!-- Cute pink heart on apron -->
+                  <path
+                    d="M80 160 C78 156 72 156 72 161 C72 165 80 170 80 171 C80 170 88 165 88 161 C88 156 82 156 80 160 Z"
+                    fill="#ff75a8"
+                  />
+
+                  <!-- Arms (leaning forward blowing) -->
+                  <path
+                    d="M54 140 Q40 152 48 162"
+                    stroke="#ffdfd3"
+                    stroke-width="12"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M106 140 Q118 152 110 162"
+                    stroke="#ffdfd3"
+                    stroke-width="12"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="48" cy="162" r="7" fill="#ffdfd3" />
+                  <circle cx="110" cy="162" r="7" fill="#ffdfd3" />
+
+                  <!-- Head Base -->
+                  <ellipse cx="80" cy="98" rx="46" ry="42" fill="#ffeae0" />
+
+                  <!-- Cheeks (Puffed up & blushing) -->
+                  <circle
+                    cx="48"
+                    cy="108"
+                    r="13"
+                    fill="#ff75a8"
+                    opacity="0.45"
+                  />
+                  <circle
+                    cx="112"
+                    cy="108"
+                    r="13"
+                    fill="#ff75a8"
+                    opacity="0.45"
+                  />
+                  <circle cx="46" cy="106" r="3" fill="#ffffff" opacity="0.8" />
+                  <circle
+                    cx="110"
+                    cy="106"
+                    r="3"
+                    fill="#ffffff"
+                    opacity="0.8"
+                  />
+
+                  <!-- Eyes (Cute curved closed eyes) -->
+                  <path
+                    class="girl-eye left-eye"
+                    d="M54 94 Q63 86 72 94"
+                    stroke="#4a3348"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    class="girl-eye right-eye"
+                    d="M88 94 Q97 86 106 94"
+                    stroke="#4a3348"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    fill="none"
+                  />
+                  <path
+                    d="M52 92 L47 88"
+                    stroke="#4a3348"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M108 92 L113 88"
+                    stroke="#4a3348"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+
+                  <!-- Cute Pouting / Blowing Mouth -->
+                  <g class="girl-mouth">
+                    <ellipse
+                      cx="80"
+                      cy="112"
+                      rx="6.5"
+                      ry="5.5"
+                      fill="#e85d75"
+                    />
+                    <ellipse
+                      cx="80"
+                      cy="112"
+                      rx="3.5"
+                      ry="3"
+                      fill="#ffffff"
+                      opacity="0.7"
+                    />
+                    <path
+                      d="M72 112 Q68 110 65 112"
+                      stroke="#ffffff"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </g>
+
+                  <!-- Hair Front & Bangs -->
+                  <path
+                    d="M40 85 C38 65 52 50 80 50 C108 50 122 65 120 85 C116 75 106 72 96 74 C86 76 74 76 64 74 C54 72 44 75 40 85 Z"
+                    fill="#6d4c41"
+                  />
+                  <path
+                    d="M58 74 C62 88 68 96 70 98"
+                    stroke="#5d4037"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M102 74 C98 88 92 96 90 98"
+                    stroke="#5d4037"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M60 62 Q80 57 100 62"
+                    stroke="#8d6e63"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    opacity="0.6"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Status badge below cake -->
+            <div class="cake-status-badge" id="cakeStatusBadge">
+              <span class="candle-icon" id="candleStatusIcon">🕯️</span>
+              <span id="cakeStatusText">Chạm vào ngọn nến để thổi nhé!</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2.2 Heartfelt Wish & Fortune Cookies -->
+        <section
+          class="wish-section"
+          id="wishSection"
+          aria-labelledby="wishHeading"
+        >
+          <div class="letter-paper-wrap">
+            <div class="paper-pin" aria-hidden="true">📌</div>
+            <div class="section-title-wrap">
+              <span class="section-emoji">💌</span>
+              <h3 id="wishHeading">Những Lời Chúc Gửi Đến Cậu</h3>
+            </div>
+
+            <div class="wish-body-text">
+              <p id="wishText">
+                Chúc cậu tuổi mới luôn vui vẻ, bình an, gặp thật nhiều điều dễ
+                thương và đạt được những điều cậu mong muốn. Cảm ơn vì đã luôn
+                là một người bạn tuyệt vời ở bên tớ. Mong rằng tụi mình sẽ còn
+                tạo thêm thật nhiều kỷ niệm đáng nhớ cùng nhau! 🧸🌷
+              </p>
+            </div>
+
+            <!-- Secret Fortune Wish Box -->
+            <div class="fortune-wish-box">
+              <div class="fortune-header">
+                <span class="fortune-icon">🥠</span>
+                <h4>Hộp Quẻ May Mắn Tuổi Mới</h4>
+              </div>
+              <p class="fortune-desc">
+                Bấm nút bên dưới để rút một thông điệp bí mật dành riêng cho
+                bạn:
+              </p>
+
+              <div class="fortune-actions">
+                <button
+                  class="fortune-draw-btn"
+                  id="surpriseButton"
+                  type="button"
+                >
+                  ✨ Bốc một quẻ may mắn
+                </button>
+                <button
+                  class="fireworks-act-btn"
+                  id="fireworksButton"
+                  type="button"
+                >
+                  🎆 Bắn pháo hoa rực rỡ!
+                </button>
+              </div>
+
+              <div
+                class="fortune-card-result hidden"
+                id="surpriseMessage"
+                role="status"
+                aria-live="polite"
+              >
+                <span class="fortune-sparkle">✨</span>
+                <p class="fortune-message-content"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2.3 Memories Photo Album (Polaroid Scrapbook) -->
+        <section
+          class="memories-section"
+          id="memorySection"
+          aria-labelledby="memoryHeading"
+        >
+          <div class="section-header-centered">
+            <span class="pill-badge">📸 OUR LITTLE MOMENTS</span>
+            <h3 id="memoryHeading">Album Kỷ Niệm Của Chúng Mình</h3>
+            <p class="section-lead-note">
+              Mỗi bức ảnh là một mảnh ghép hạnh phúc. Chạm vào ảnh để phóng to
+              và xem kỷ niệm nhé!
+            </p>
+          </div>
+
+          <!-- Polaroid Scrapbook Grid -->
+          <div class="scrapbook-gallery" id="scrapbookGallery">
+            <!-- Photo items will be rendered dynamically from CONFIG, with static fallback for instant load -->
+            <figure
+              class="polaroid-card rot-left"
+              data-index="0"
+              role="button"
+              tabindex="0"
+              aria-label="Xem ảnh kỷ niệm 1: Trà sữa & những cuộc trò chuyện"
+            >
+              <div class="washi-tape tape-top-left" aria-hidden="true"></div>
+              <div class="polaroid-frame">
+                <img
+                  src="assets/memory-1.svg"
+                  alt="Ảnh kỷ niệm trà sữa cùng bạn thân"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption>
+                <span class="caption-handwriting"
+                  >Trà sữa & những cuộc trò chuyện 🧋</span
+                >
+                <small class="caption-date">Kỷ niệm ngọt ngào</small>
+              </figcaption>
+            </figure>
+
+            <figure
+              class="polaroid-card rot-right"
+              data-index="1"
+              role="button"
+              tabindex="0"
+              aria-label="Xem ảnh kỷ niệm 2: Đi khắp nơi cùng nhau"
+            >
+              <div class="washi-tape tape-top-right" aria-hidden="true"></div>
+              <div class="polaroid-frame">
+                <img
+                  src="assets/memory-2.svg"
+                  alt="Ảnh kỷ niệm dã ngoại dạo chơi"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption>
+                <span class="caption-handwriting"
+                  >Đi khắp nơi cùng nhau 🌷</span
+                >
+                <small class="caption-date">Những chuyến đi đáng nhớ</small>
+              </figcaption>
+            </figure>
+
+            <figure
+              class="polaroid-card rot-center"
+              data-index="2"
+              role="button"
+              tabindex="0"
+              aria-label="Xem ảnh kỷ niệm 3: Món quà từ trái tim"
+            >
+              <div class="washi-tape tape-top-center" aria-hidden="true"></div>
+              <div class="polaroid-frame">
+                <img
+                  src="assets/memory-3.svg"
+                  alt="Ảnh kỷ niệm món quà sinh nhật"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption>
+                <span class="caption-handwriting">Món quà từ trái tim 🎁</span>
+                <small class="caption-date">Luôn ở bên nhau</small>
+              </figcaption>
+            </figure>
+
+            <figure
+              class="polaroid-card rot-left-subtle"
+              data-index="3"
+              role="button"
+              tabindex="0"
+              aria-label="Xem ảnh kỷ niệm 4: Lưu giữ mọi nụ cười"
+            >
+              <div class="washi-tape tape-top-left" aria-hidden="true"></div>
+              <div class="polaroid-frame">
+                <img
+                  src="assets/memory-4.svg"
+                  alt="Ảnh kỷ niệm lưu giữ nụ cười của bạn"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption>
+                <span class="caption-handwriting">Lưu giữ mọi nụ cười 📸</span>
+                <small class="caption-date">Forever</small>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 2.4 Final Note & Grand Finale -->
+        <section
+          class="finale-section"
+          id="finaleSection"
+          aria-labelledby="finaleHeading"
+        >
+          <div
+            class="gift-box-anim"
+            id="giftBoxAnim"
+            role="button"
+            tabindex="0"
+            aria-label="Hộp quà diệu kỳ, bấm để tung quà"
+          >
+            <span class="gift-emoji">🎁</span>
+            <span class="gift-glow" aria-hidden="true"></span>
+          </div>
+
+          <h3 id="finaleHeading">Điều Ước Nhỏ Dành Cho Cậu</h3>
+          <p class="finale-message" id="finaleMessage">
+            Mong tuổi mới sẽ đối xử với cậu thật dịu dàng. Dù cuộc sống có bận
+            rộn hay khó khăn đến đâu, hãy luôn nhớ rằng cậu luôn có một đứa bạn
+            sẵn sàng lắng nghe, chia sẻ và đồng hành cùng cậu nhé!
+          </p>
+
+          <div class="letter-signature">
+            <p>Thương mến gửi từ,</p>
+            <span class="signature-name" id="senderName"
+              >Đứa bạn thân của cậu ♡</span
+            >
+          </div>
+
+          <div class="celebration-replay-buttons">
+            <button
+              class="grand-celebrate-btn"
+              id="celebrateAgain"
+              type="button"
+            >
+              🎊 Ăn mừng thêm lần nữa! (Pháo hoa + Confetti)
+            </button>
+            <button
+              class="replay-envelope-btn"
+              id="reopenEnvelopeBtn"
+              type="button"
+            >
+              💌 Gấp thư và xem lại từ đầu
+            </button>
+          </div>
+
+          <footer class="app-footer">
+            <p>
+              Designed with all my heart ♡ Just for you on your special day.
+            </p>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- LIGHTBOX MODAL FOR MEMORIES                -->
+    <!-- ========================================== -->
+    <div
+      class="lightbox-modal hidden"
+      id="lightboxModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Xem ảnh kỷ niệm kích thước lớn"
+    >
+      <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+      <div class="lightbox-content">
+        <button
+          class="lightbox-close-btn"
+          id="lightboxCloseBtn"
+          type="button"
+          aria-label="Đóng xem ảnh lớn (Phím Escape)"
+        >
+          ✕
+        </button>
+
+        <button
+          class="lightbox-nav-btn prev-btn"
+          id="lightboxPrevBtn"
+          type="button"
+          aria-label="Ảnh trước đó"
+        >
+          ❮
+        </button>
+
+        <div class="lightbox-figure-wrap">
+          <img src="" alt="" class="lightbox-image" id="lightboxImage" />
+          <div class="lightbox-meta">
+            <h4 id="lightboxCaption" class="lightbox-caption"></h4>
+            <p id="lightboxDate" class="lightbox-date"></p>
+            <span id="lightboxCounter" class="lightbox-counter">1 / 4</span>
+          </div>
+        </div>
+
+        <button
+          class="lightbox-nav-btn next-btn"
+          id="lightboxNextBtn"
+          type="button"
+          aria-label="Ảnh tiếp theo"
+        >
+          ❯
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamic Confetti & Flower Petal Particles Layer -->
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    <div class="flower-layer" id="flowerLayer" aria-hidden="true"></div>
+    <div
+      class="balloons-flying-layer"
+      id="balloonsFlyingLayer"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Toast Notification Pill for Interactive Feedback -->
+    <div
+      class="effect-toast hidden"
+      id="effectToast"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+    <!-- Audio Element (Birthday Song) -->
+    <audio
+      id="birthdayAudio"
+      loop
+      preload="auto"
+      src="assets/birthday-song.mp3"
+    ></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
